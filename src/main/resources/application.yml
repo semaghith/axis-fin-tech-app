@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: dev  # Set active profile to dev
+
+  application:
+    name: ${SPRING_APPLICATION_NAME:fin-tech-app}  # Default to fin-tech-app if not set
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/fin-tech}  # Default connection string
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}  # Default username
+    password: ${SPRING_DATASOURCE_PASSWORD:ssss}  # Default password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update

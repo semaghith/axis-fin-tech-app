@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: fin-tech-app
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fin-tech
+    username: postgres
+    password: ssss
