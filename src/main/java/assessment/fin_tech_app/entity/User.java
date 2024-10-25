@@ -30,7 +30,13 @@ public class User {
     private String password;
 
     @Column(nullable = false)
+    private boolean deleted = false;
+
+    @Column(nullable = false)
     private BigDecimal balance = BigDecimal.ZERO;
+
+    @Column(name = "mobile_number")
+    private String mobileNumber;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Transaction> transactions = new ArrayList<>();

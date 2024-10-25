@@ -27,6 +27,9 @@ public class Transaction {
     private LocalDateTime createdAt;
 
     @Column(nullable = false)
+    private boolean deleted = false;
+
+    @Column(nullable = false)
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
