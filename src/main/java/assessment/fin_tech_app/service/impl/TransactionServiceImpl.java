@@ -18,4 +18,9 @@ public class TransactionServiceImpl implements TransactionService {
     public Long depositMoney(Long amount) {
         return 0L;
     }
+
+    @Override
+    public Long withdrawMoney(Long amount) {
+        return 0L;
+    }
 }

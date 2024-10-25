@@ -19,5 +19,11 @@ public class TransactionController {
 
         return transactionService.depositMoney(amount);
     }
+
+    @PostMapping(path = "/withdraw/{amount}")
+    public Long withdrawMoney(@PathVariable Long amount) {
+
+        return transactionService.withdrawMoney(amount);
+    }
 }
 
