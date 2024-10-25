@@ -20,12 +20,12 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public BigDecimal retrieveBalance(Long userId) throws Exception {
+    public BigDecimal retrieveBalance(Long userId) {
 
         User user = userRepository.findByIdAndDeletedFalse(userId);
 
         if (user == null) {
-            throw new ApiException(Constants.ErrorMessages.USER_NOT_FOUND, HttpStatus.BAD_REQUEST);
+            throw new ApiException(Constants.ErrorMessages.USER_NOT_FOUND, HttpStatus.NOT_FOUND);
         }
 
         return user.getBalance();

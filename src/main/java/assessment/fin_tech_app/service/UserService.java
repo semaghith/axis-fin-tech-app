@@ -4,5 +4,5 @@ import java.math.BigDecimal;
 
 public interface UserService {
 
-    BigDecimal retrieveBalance(Long userId) throws Exception;
+    BigDecimal retrieveBalance(Long userId);
 }

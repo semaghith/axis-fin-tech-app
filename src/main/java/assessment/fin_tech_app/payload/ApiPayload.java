@@ -5,7 +5,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class ApiResponse<T> {
+public class ApiPayload<T> {
 
     private boolean success;
     private String message;
@@ -13,14 +13,14 @@ public class ApiResponse<T> {
     private LocalDateTime timestamp;
     private T payload;
 
-    public ApiResponse(String message, int statusCode) {
+    public ApiPayload(String message, int statusCode) {
         this.success = true;
         this.message = message;
         this.statusCode = statusCode;
         this.timestamp = LocalDateTime.now();
     }
 
-    public ApiResponse(String message, int statusCode, T payload) {
+    public ApiPayload(String message, int statusCode, T payload) {
         this.success = true;
         this.message = message;
         this.statusCode = statusCode;
@@ -28,7 +28,7 @@ public class ApiResponse<T> {
         this.payload = payload;
     }
 
-    public ApiResponse(int statusCode, T payload) {
+    public ApiPayload(int statusCode, T payload) {
         this.success = true;
         this.message = "";
         this.statusCode = statusCode;
@@ -36,15 +36,15 @@ public class ApiResponse<T> {
         this.payload = payload;
     }
 
-    public static ApiResponse<String> success(String message, int statusCode) {
-        return new ApiResponse<>(message, statusCode);
+    public static ApiPayload<String> success(String message, int statusCode) {
+        return new ApiPayload<>(message, statusCode);
     }
 
-    public static <T> ApiResponse<T> success(String message, int statusCode, T payload) {
-        return new ApiResponse<>(message, statusCode, payload);
+    public static <T> ApiPayload<T> success(String message, int statusCode, T payload) {
+        return new ApiPayload<>(message, statusCode, payload);
     }
 
-    public static <T> ApiResponse<T> success(int statusCode, T payload) {
-        return new ApiResponse<>(statusCode, payload);
+    public static <T> ApiPayload<T> success(int statusCode, T payload) {
+        return new ApiPayload<>(statusCode, payload);
     }
 }
