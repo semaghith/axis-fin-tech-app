@@ -1,10 +1,11 @@
 package assessment.fin_tech_app.service;
 
 import assessment.fin_tech_app.controller.dto.request.TransactionRequest;
+import assessment.fin_tech_app.entity.Transaction;
 
 public interface TransactionService {
 
-    Long depositMoney(TransactionRequest request) throws Exception;
+    Transaction depositMoney(TransactionRequest request);
 
-    Long withdrawMoney(TransactionRequest request) throws Exception;
+    Transaction withdrawMoney(TransactionRequest request);
 }

@@ -1,6 +1,10 @@
 package assessment.fin_tech_app.controller;
 
+import assessment.fin_tech_app.controller.dto.response.BalanceResponse;
+import assessment.fin_tech_app.mapper.TransactionMapper;
+import assessment.fin_tech_app.payload.ApiResponse;
 import assessment.fin_tech_app.service.UserService;
+import assessment.fin_tech_app.utils.Constants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,8 +21,12 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping(path = "/{userId}/balance")
-    public BigDecimal retrieveBalance(@PathVariable Long userId) throws Exception {
+    public ApiResponse<BalanceResponse> retrieveBalance(@PathVariable Long userId) throws Exception {
 
-        return userService.retrieveBalance(userId);
+        BigDecimal balance = userService.retrieveBalance(userId);
+
+        BalanceResponse response = new BalanceResponse(userId, balance);
+
+        return ApiResponse.success(Constants.SuccessMessages.BALANCE_RETRIEVED_SUCCESSFULLY, 200, response);
     }
 }

@@ -19,6 +19,8 @@ public class Constants {
     public static class SuccessMessages {
 
         public static final String ACCOUNT_CREATED_SUCCESSFULLY = "Account created successfully.";
+        public static final String TRANSACTION_COMPLETED_SUCCESSFULLY = "Transaction completed successfully.";
+        public static final String BALANCE_RETRIEVED_SUCCESSFULLY = "Balance retrieved successfully.";
     }
 
     public static class ErrorMessages {
