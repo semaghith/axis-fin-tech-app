@@ -1,10 +1,7 @@
 package assessment.fin_tech_app.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,6 +13,8 @@ import java.util.List;
 @Builder
 @Data
 @Table(name = "users")
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -30,9 +29,11 @@ public class User {
     private String password;
 
     @Column(nullable = false)
+    @Builder.Default
     private boolean deleted = false;
 
     @Column(nullable = false)
+    @Builder.Default
     private BigDecimal balance = BigDecimal.ZERO;
 
     @Column(name = "mobile_number")

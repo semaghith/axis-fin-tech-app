@@ -15,4 +15,16 @@ public interface UserRepository extends
             "WHERE u.username = :username " +
             "AND u.deleted = false ")
     boolean existsByUsernameAndDeletedFalse(String username);
+
+    @Query("SELECT u " +
+            "FROM User u " +
+            "WHERE u.username = :username " +
+            "AND u.deleted = false ")
+    User findByUsernameAndDeletedFalse(String username);
+
+    @Query("SELECT u " +
+            "FROM User u " +
+            "WHERE u.id = :id " +
+            "AND u.deleted = false ")
+    User findByIdAndDeletedFalse(Long id);
 }

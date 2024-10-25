@@ -6,6 +6,8 @@ import assessment.fin_tech_app.entity.User;
 import assessment.fin_tech_app.mapper.AuthMapper;
 import assessment.fin_tech_app.repository.UserRepository;
 import assessment.fin_tech_app.service.AuthService;
+import assessment.fin_tech_app.utils.Constants;
+import assessment.fin_tech_app.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,26 +21,31 @@ public class AuthServiceImpl implements AuthService {
     private final AuthMapper authMapper;
 
     @Override
-    public Long login(LoginRequest request) {
+    public Long login(LoginRequest request) throws Exception {
 
-        if (!userRepository.existsByUsernameAndDeletedFalse(request.username())) {
-            return null;
+        User user = userRepository.findByUsernameAndDeletedFalse(request.username());
+
+        if (user == null) {
+            throw new Exception(Constants.ErrorMessages.USER_NOT_FOUND);
         }
-        
-        return 0L;
+
+        if (!Utils.checkPassword(request.password(), user.getPassword())) {
+            throw new Exception(Constants.ErrorMessages.WRONG_USERNAME_OR_PASSWORD);
+        }
+
+        return user.getId();
     }
 
     @Override
-    public Long register(RegisterRequest request) {
+    public Long register(RegisterRequest request) throws Exception {
 
         if (userRepository.existsByUsernameAndDeletedFalse(request.username())) {
-            return null;
+            throw new Exception(Constants.ErrorMessages.USERNAME_ALREADY_EXISTS);
         }
 
         User user = authMapper.toEntity(request);
 
-//        TODO: hash password
-        user.setPassword(request.password());
+        user.setPassword(Utils.hashPassword(request.password()));
 
         userRepository.save(user);
 

@@ -5,7 +5,7 @@ import assessment.fin_tech_app.controller.dto.request.RegisterRequest;
 
 public interface AuthService {
 
-    Long login(LoginRequest request);
+    Long login(LoginRequest request) throws Exception;
 
-    Long register(RegisterRequest request);
+    Long register(RegisterRequest request) throws Exception;
 }

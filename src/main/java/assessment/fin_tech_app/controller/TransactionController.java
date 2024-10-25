@@ -1,9 +1,11 @@
 package assessment.fin_tech_app.controller;
 
+import assessment.fin_tech_app.controller.dto.request.TransactionRequest;
 import assessment.fin_tech_app.service.TransactionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,16 +16,22 @@ public class TransactionController {
 
     private final TransactionService transactionService;
 
-    @PostMapping(path = "/deposit/{amount}")
-    public Long depositMoney(@PathVariable Long amount) {
+//    @GetMapping(path = "/transactions/{id}")
+//    public TransactionResponse retrieveTransaction(@PathVariable Long id) {
+//
+//        return transactionService.retrieveTransaction(id);
+//    }
 
-        return transactionService.depositMoney(amount);
+    @PostMapping(path = "/deposit")
+    public Long depositMoney(@RequestBody @Valid TransactionRequest request) {
+
+        return transactionService.depositMoney(request);
     }
 
-    @PostMapping(path = "/withdraw/{amount}")
-    public Long withdrawMoney(@PathVariable Long amount) {
+    @PostMapping(path = "/withdraw")
+    public Long withdrawMoney(@RequestBody @Valid TransactionRequest request) {
 
-        return transactionService.withdrawMoney(amount);
+        return transactionService.withdrawMoney(request);
     }
 }
 
