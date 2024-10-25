@@ -28,5 +28,6 @@ public class Constants {
         public static final String INVALID_PASSWORD = "Invalid password format!";
         public static final String WRONG_USERNAME_OR_PASSWORD = "Wrong username or password!";
         public static final String USER_NOT_FOUND = "User not found!";
+        public static final String LOW_BALANCE = "Low balance, transaction failed!";
     }
 }

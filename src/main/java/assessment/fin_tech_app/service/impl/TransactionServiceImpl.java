@@ -7,6 +7,7 @@ import assessment.fin_tech_app.entity.enums.TransactionType;
 import assessment.fin_tech_app.repository.TransactionRepository;
 import assessment.fin_tech_app.repository.UserRepository;
 import assessment.fin_tech_app.service.TransactionService;
+import assessment.fin_tech_app.utils.Constants;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,12 +25,12 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     @Transactional
-    public Long depositMoney(TransactionRequest request) {
+    public Long depositMoney(TransactionRequest request) throws Exception {
 
         User user = userRepository.findByIdAndDeletedFalse(request.userId());
 
         if (user == null) {
-            return null;
+            throw new Exception(Constants.ErrorMessages.USER_NOT_FOUND);
         }
 
         Transaction transaction = buildTransaction(request.amount(), TransactionType.DEPOSIT, user);
@@ -44,16 +45,16 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     @Transactional
-    public Long withdrawMoney(TransactionRequest request) {
+    public Long withdrawMoney(TransactionRequest request) throws Exception {
 
         User user = userRepository.findByIdAndDeletedFalse(request.userId());
 
         if (user == null) {
-            return null;
+            throw new Exception(Constants.ErrorMessages.USER_NOT_FOUND);
         }
 
         if (user.getBalance().compareTo(request.amount()) < 0) {
-            return null;
+            throw new Exception(Constants.ErrorMessages.LOW_BALANCE);
         }
 
         Transaction transaction = buildTransaction(request.amount(), TransactionType.WITHDRAW, user);

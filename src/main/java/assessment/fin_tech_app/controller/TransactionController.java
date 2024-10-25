@@ -23,13 +23,13 @@ public class TransactionController {
 //    }
 
     @PostMapping(path = "/deposit")
-    public Long depositMoney(@RequestBody @Valid TransactionRequest request) {
+    public Long depositMoney(@RequestBody @Valid TransactionRequest request) throws Exception {
 
         return transactionService.depositMoney(request);
     }
 
     @PostMapping(path = "/withdraw")
-    public Long withdrawMoney(@RequestBody @Valid TransactionRequest request) {
+    public Long withdrawMoney(@RequestBody @Valid TransactionRequest request) throws Exception {
 
         return transactionService.withdrawMoney(request);
     }
