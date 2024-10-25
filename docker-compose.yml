@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+
+  postgres:
+
+    image: postgres:latest
+    restart: always
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: fin_tech_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ssss
+    ports:
+      - "5432:5432"
+
+
+  app:
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fin_tech_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/fin_tech_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: ssss
+      SPRING_PROFILES_ACTIVE: dev

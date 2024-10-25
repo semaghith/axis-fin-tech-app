@@ -112,6 +112,14 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>assessment.fin_tech_app.FinTechAppApplication</mainClass>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
