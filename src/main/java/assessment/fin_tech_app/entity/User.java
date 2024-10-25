@@ -9,12 +9,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
-    @GeneratedValue(generator = "transaction_seq")
-    @SequenceGenerator(name = "transaction_seq", sequenceName = "transaction_seq")
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
     private Long id;
 
 }

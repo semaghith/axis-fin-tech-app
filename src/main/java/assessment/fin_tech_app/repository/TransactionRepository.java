@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TransactionRepository extends
-        JpaRepository<Long, Transaction> {
+        JpaRepository<Transaction, Long> {
 
 }

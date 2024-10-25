@@ -14,7 +14,7 @@ public class TransactionController {
 
     private final TransactionService transactionService;
 
-    @PostMapping(path = "/deposit")
+    @PostMapping(path = "/deposit/{amount}")
     public Long depositMoney(@PathVariable Long amount) {
 
         return transactionService.depositMoney(amount);

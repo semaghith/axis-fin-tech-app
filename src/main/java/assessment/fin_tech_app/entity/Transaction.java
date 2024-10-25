@@ -12,9 +12,9 @@ import lombok.Setter;
 @Table(name = "transaction")
 public class Transaction {
 
-    @GeneratedValue(generator = "transaction_seq")
-    @SequenceGenerator(name = "transaction_seq", sequenceName = "transaction_seq")
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_seq")
+    @SequenceGenerator(name = "transaction_seq", sequenceName = "transaction_seq", allocationSize = 1)
     private Long id;
 
 
